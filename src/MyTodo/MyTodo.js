@@ -1,7 +1,7 @@
 import React from "react";
-
-const ToDo = () => {
-  const [myTodo, setMyTodo] = React.useState([]);
+import "./MyTodo.css";
+const MyTodo = () => {
+  const [todos, setTodos] = React.useState([]);
   const [todo, setTodo] = React.useState("");
   const [todoEditing, setTodoEditing] = React.useState(null);
   const [editingText, setEditingText] = React.useState("");
@@ -10,50 +10,50 @@ const ToDo = () => {
     const json = localStorage.getItem("todos");
     const loadedTodos = JSON.parse(json);
     if (loadedTodos) {
-      setMyTodo(loadedTodos);
+      setTodos(loadedTodos);
     }
   }, []);
 
   React.useEffect(() => {
-    const json = JSON.stringify(myTodo);
+    const json = JSON.stringify(todos);
     localStorage.setItem("todos", json);
-  }, [myTodo]);
+  }, [todos]);
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    const myNewTodo = {
+    const newTodo = {
       id: new Date().getTime(),
       text: todo,
       completed: false,
     };
-    setMyTodo([...myTodo].concat(myNewTodo));
+    setTodos([...todos].concat(newTodo));
     setTodo("");
   }
 
   function deleteTodo(id) {
-    let updatedTodos = [...myTodo].filter((todo) => todo.id !== id);
-    setMyTodo(updatedTodos);
+    let updatedTodos = [...todos].filter((todo) => todo.id !== id);
+    setTodos(updatedTodos);
   }
 
   function toggleComplete(id) {
-    let updatedTodos = [...myTodo].map((todo) => {
+    let updatedTodos = [...todos].map((todo) => {
       if (todo.id === id) {
         todo.completed = !todo.completed;
       }
       return todo;
     });
-    setMyTodo(updatedTodos);
+    setTodos(updatedTodos);
   }
 
   function submitEdits(id) {
-    const updatedTodos = [...myTodo].map((todo) => {
+    const updatedTodos = [...todos].map((todo) => {
       if (todo.id === id) {
         todo.text = editingText;
       }
       return todo;
     });
-    setMyTodo(updatedTodos);
+    setTodos(updatedTodos);
     setTodoEditing(null);
   }
   return (
@@ -65,12 +65,11 @@ const ToDo = () => {
           onChange={(e) => setTodo(e.target.value)}
           value={todo}
         />
-        <button className="bg-primary input-btn" type="submit">
-          {" "}
-          Input{" "}
+        <button className="bg-primary" type="submit">
+          Add Todo
         </button>
       </form>
-      {myTodo.map((todo) => (
+      {todos.map((todo) => (
         <div key={todo.id} className="todo">
           <div className="todo-text">
             <input
@@ -103,4 +102,4 @@ const ToDo = () => {
   );
 };
 
-export default ToDo;
+export default MyTodo;
