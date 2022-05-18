@@ -1,5 +1,5 @@
 import React from "react";
-import "./MyTodo.css";
+import "./Todo.css";
 const MyTodo = () => {
   const [todos, setTodos] = React.useState([]);
   const [todo, setTodo] = React.useState("");
@@ -61,11 +61,12 @@ const MyTodo = () => {
       <h1>Todo List</h1>
       <form onSubmit={handleSubmit}>
         <input
+          className="input input-bordered input-secondary"
           type="text"
           onChange={(e) => setTodo(e.target.value)}
           value={todo}
         />
-        <button className="bg-primary" type="submit">
+        <button className="bg-primary add-btn" type="submit">
           Add Todo
         </button>
       </form>

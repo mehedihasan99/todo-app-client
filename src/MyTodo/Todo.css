@@ -15,9 +15,13 @@ form,
 }
 
 form {
-    display: flex;
+    /* display: flex; */
     justify-content: space-between;
     margin-bottom: 30px;
+}
+
+.add-btn {
+    margin-left: 50px;
 }
 
 form input {
