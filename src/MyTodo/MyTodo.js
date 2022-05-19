@@ -58,7 +58,7 @@ const MyTodo = () => {
   }
   return (
     <div id="todo-list">
-      <h1>Todo List</h1>
+      <h1 className="mb-4 text-2xl text-primary"> Please Add Item</h1>
       <form onSubmit={handleSubmit}>
         <input
           className="input input-bordered input-secondary"
