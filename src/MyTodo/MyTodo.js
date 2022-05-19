@@ -58,7 +58,10 @@ const MyTodo = () => {
   }
   return (
     <div id="todo-list">
-      <h1 className="mb-4 text-2xl text-primary"> Please Add Item</h1>
+      <h1 className="mb-4 text-2xl text-secondary font-bold">
+        {" "}
+        Please Add Item
+      </h1>
       <form onSubmit={handleSubmit}>
         <input
           className="input input-bordered input-secondary"
@@ -67,7 +70,7 @@ const MyTodo = () => {
           value={todo}
         />
         <button className="bg-primary add-btn" type="submit">
-          Add Todo
+          Add Item
         </button>
       </form>
       {todos.map((todo) => (
